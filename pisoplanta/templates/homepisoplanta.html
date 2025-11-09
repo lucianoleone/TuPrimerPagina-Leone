@@ -1,1 +1,108 @@
-Bienvenido al Piso de Planta
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piso de Planta</title>
+</head>
+<body style="
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+    text-align: center;
+    padding: 40px;
+">
+
+    <div style="
+        max-width: 600px;
+        margin: auto;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        padding: 30px;
+    ">
+        <h1 style="color: #007bff;">🏭 Bienvenido al Piso de Planta</h1>
+
+        <p style="font-size: 1.1em; margin-top: 10px;">
+            Este sistema te permite registrar y consultar los <strong>centros de trabajo</strong> del área industrial.
+        </p>
+
+        <hr style="margin: 20px 0;">
+
+        <!-- 🔹 Formulario para crear un nuevo centro -->
+        <h2 style="color: #333;">➕ Crear un nuevo centro</h2>
+
+        <form id="crearCentroForm" onsubmit="return redirigirCentro()" style="text-align: left; margin-top: 20px;">
+            <label><strong>Nombre del centro:</strong></label><br>
+            <input type="text" id="nombre" name="nombre" required
+                   style="width: 100%; padding: 8px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px;"><br>
+
+            <label><strong>Operación:</strong></label><br>
+            <input type="text" id="operacion" name="operacion" required
+                   style="width: 100%; padding: 8px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px;"><br>
+
+            <label><strong>Activo:</strong></label><br>
+            <select id="activo" name="activo"
+                    style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+                <option value="1">Sí</option>
+                <option value="0">No</option>
+            </select>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <button type="submit" style="
+                    background-color: #28a745;
+                    color: white;
+                    border: none;
+                    padding: 10px 25px;
+                    border-radius: 6px;
+                    font-weight: bold;
+                    cursor: pointer;
+                ">
+                    Crear centro
+                </button>
+            </div>
+        </form>
+
+        <hr style="margin: 30px 0;">
+
+        <!-- 🔹 Botón para ver la lista de centros -->
+        <a href="/listar-centros/" style="
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-weight: bold;
+        ">
+            📋 Ver lista de centros
+        </a>
+
+        <p style="margin-top: 40px; color: #666;">
+            Gestioná tus máquinas y centros de trabajo de manera simple y organizada.
+        </p>
+    </div>
+
+    <!-- 🔹 Script para redirigir con los parámetros del formulario -->
+    <script>
+        function redirigirCentro() {
+            const nombre = document.getElementById("nombre").value.trim();
+            const operacion = document.getElementById("operacion").value.trim();
+            const activo = document.getElementById("activo").value;
+
+            if (!nombre || !operacion) {
+                alert("Por favor, complete todos los campos.");
+                return false;
+            }
+
+            // Construye la URL con los parámetros
+            const url = `/crear-centro/${encodeURIComponent(nombre)}/${encodeURIComponent(operacion)}/${activo}/`;
+
+            // Redirige al usuario a la vista de creación
+            window.location.href = url;
+            return false; // evita el envío del formulario tradicional
+        }
+    </script>
+
+</body>
+</html>
