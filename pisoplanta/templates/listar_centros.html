@@ -1,0 +1,26 @@
+<h2>Lista de Centros</h2>
+
+<ul style="list-style-type: none; padding: 0;">
+    {% for centro in centros %}
+    <li style="
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        padding: 10px;
+        box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    ">
+        <strong>Nombre:</strong> {{ centro.nombre }}<br>
+        <strong>Operación:</strong> {{ centro.operacion }}<br>
+        <strong>Activo:</strong> 
+        {% if centro.activo %}
+            ✅ Sí
+        {% else %}
+            ❌ No
+        {% endif %}
+    </li>
+    {% empty %}
+    <li>No hay centros registrados.</li>
+    {% endfor %}
+</ul>
+

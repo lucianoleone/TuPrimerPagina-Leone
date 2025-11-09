@@ -1,0 +1,30 @@
+<div style="
+    max-width: 500px;
+    margin: 40px auto;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+">
+    <h2 style="color: #2c3e50;">✅ Creación exitosa de centro</h2>
+
+    <p style="font-size: 1.1em; margin-top: 15px;">
+        <strong>{{ centro.nombre }}</strong> ha sido creado correctamente.
+    </p>
+
+    <p>
+        <strong>Operación:</strong> {{ centro.operacion }}<br>
+        <strong>Estado:</strong>
+        {% if centro.activo %}
+            <span style="color: green; font-weight: bold;">Activo ✅</span>
+        {% else %}
+            <span style="color: red; font-weight: bold;">Inactivo ❌</span>
+        {% endif %}
+    </p>
+
+    <p style="margin-top: 20px; color: #666;">
+        Puede cerrar esta página o continuar trabajando en la aplicación.
+    </p>
+</div>
