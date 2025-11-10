@@ -5,9 +5,9 @@ El objetivo es mantener un relevamiento actualizado del estado operativo y la ex
 
 🚀 Funcionalidades principales
 
-Creación de centros mediante parámetros en la URL
+Creación de centros de trabajo mediante parámetros en la URL
 
-Listado general de centros existentes con sus estados
+Listado general de centros de trabajo  existentes con sus estados
 
 Interfaz visual simple y clara (sin dependencias externas)
 
@@ -56,9 +56,8 @@ http://127.0.0.1:8000/crear-centro/<nombre>/<operacion>/<activo>/
 👤 Autor
 
 Luciano Leone
-💼 Empresa: [Tu empresa de electrónica]
-📧 Contacto: [tu_email@example.com
-]
+
+📧 Contacto: [luciano.leone@gmail.com]
 
 💬 Notas
 
