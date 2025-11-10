@@ -231,7 +231,7 @@ cython_debug/
 
 # SageMath parsed files
 
-# Environments
+# Environments (agregamos venv para ignorar el entorno virtual creado)
 venv
 # Spyder project settings
 

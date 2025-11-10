@@ -55,7 +55,7 @@ ROOT_URLCONF = 'Pagina.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates', BASE_DIR / 'pisoplanta' / 'templates'],
+        'DIRS': [BASE_DIR / 'templates', BASE_DIR / 'pisoplanta' / 'templates'], # Directorios de plantillas, creamos template general y para nuestra app pisoplante
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
