@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+#utilizamos include y dejamos las URLs de la app pisoplanta en su propio archivo urls.py
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('pisoplanta.urls')),

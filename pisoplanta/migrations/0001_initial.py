@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 
-
+#Chequeamos que se haya realizado la migracion inicial para crear el modelo Centro
 class Migration(migrations.Migration):
 
     initial = True
