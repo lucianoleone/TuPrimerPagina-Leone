@@ -1,108 +1,91 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piso de Planta</title>
-</head>
-<body style="
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f8;
-    color: #333;
+{% extends "base.html" %}
+
+{% block titulo %}
+Piso de Planta – Inicio
+{% endblock titulo %}
+
+{% block contenido %}
+
+<div style="
     text-align: center;
     padding: 40px;
 ">
 
+    <h1 style="color: #007bff; font-size: 2.2em; margin-bottom: 10px;">
+        🏭 Sistema de Piso de Planta
+    </h1>
+
+    <p style="font-size: 1.2em; color: #555; max-width: 700px; margin: auto;">
+        Bienvenido al sistema de monitoreo y gestión del piso de planta.  
+        Aquí podrás visualizar y administrar los <strong>centros de trabajo</strong>,
+        así como obtener información clave del estado operativo de la fábrica en tiempo real.
+    </p>
+
+    <hr style="margin: 30px auto; width: 60%; border-color: #ccc;">
+
     <div style="
-        max-width: 600px;
-        margin: auto;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        padding: 30px;
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        margin-top: 30px;
     ">
-        <h1 style="color: #007bff;">🏭 Bienvenido al Piso de Planta</h1>
 
-        <p style="font-size: 1.1em; margin-top: 10px;">
-            Este sistema te permite registrar y consultar los <strong>centros de trabajo</strong> del área industrial.
-        </p>
-
-        <hr style="margin: 20px 0;">
-
-        <!-- 🔹 Formulario para crear un nuevo centro -->
-        <h2 style="color: #333;">➕ Crear un nuevo centro</h2>
-
-        <form id="crearCentroForm" onsubmit="return redirigirCentro()" style="text-align: left; margin-top: 20px;">
-            <label><strong>Nombre del centro:</strong></label><br>
-            <input type="text" id="nombre" name="nombre" required
-                   style="width: 100%; padding: 8px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px;"><br>
-
-            <label><strong>Operación:</strong></label><br>
-            <input type="text" id="operacion" name="operacion" required
-                   style="width: 100%; padding: 8px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px;"><br>
-
-            <label><strong>Activo:</strong></label><br>
-            <select id="activo" name="activo"
-                    style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
-                <option value="1">Sí</option>
-                <option value="0">No</option>
-            </select>
-
-            <div style="text-align: center; margin-top: 20px;">
-                <button type="submit" style="
-                    background-color: #28a745;
-                    color: white;
-                    border: none;
-                    padding: 10px 25px;
-                    border-radius: 6px;
-                    font-weight: bold;
-                    cursor: pointer;
-                ">
-                    Crear centro
-                </button>
-            </div>
-        </form>
-
-        <hr style="margin: 30px 0;">
-
-        <!-- 🔹 Botón para ver la lista de centros -->
-        <a href="/listar-centros/" style="
-            display: inline-block;
-            background-color: #007bff;
+        <!-- Tarjeta: Crear Centro -->
+        <a href="{% url 'crear_centro' %}" style="
+            width: 250px;
+            padding: 20px;
+            border-radius: 12px;
+            background: #28a745;
             color: white;
             text-decoration: none;
-            padding: 12px 25px;
-            border-radius: 6px;
-            font-weight: bold;
-        ">
-            📋 Ver lista de centros
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: transform 0.2s, box-shadow 0.2s;
+        " onmouseover="this.style.transform='scale(1.04)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)';"
+          onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.15)';">
+            <h3>➕ Crear Centro</h3>
+            <p>Registrar un nuevo centro de trabajo.</p>
         </a>
 
-        <p style="margin-top: 40px; color: #666;">
-            Gestioná tus máquinas y centros de trabajo de manera simple y organizada.
-        </p>
+        <!-- Tarjeta: Lista de Centros -->
+        <a href="{% url 'listar_centros' %}" style="
+            width: 250px;
+            padding: 20px;
+            border-radius: 12px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: transform 0.2s, box-shadow 0.2s;
+        " onmouseover="this.style.transform='scale(1.04)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)';"
+          onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.15)';">
+            <h3>📋 Ver Centros</h3>
+            <p>Consultar todos los centros registrados.</p>
+        </a>
+
+        <!-- Tarjeta: Próximamente Monitoreo -->
+        <div style="
+            width: 250px;
+            padding: 20px;
+            border-radius: 12px;
+            background: #6c757d;
+            color: white;
+            text-decoration: none;
+            opacity: 0.85;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            cursor: default;
+        ">
+            <h3>⏳ Monitoreo en Vivo</h3>
+            <p>Próximamente podrás ver los centros activos en tiempo real.</p>
+        </div>
+
     </div>
 
-    <!-- 🔹 Script para redirigir con los parámetros del formulario -->
-    <script>
-        function redirigirCentro() {
-            const nombre = document.getElementById("nombre").value.trim();
-            const operacion = document.getElementById("operacion").value.trim();
-            const activo = document.getElementById("activo").value;
+    <p style="margin-top: 50px; color: #777;">
+        Más módulos serán incorporados para ofrecer una visión  
+        completa y dinámica del rendimiento de la planta.
+    </p>
 
-            if (!nombre || !operacion) {
-                alert("Por favor, complete todos los campos.");
-                return false;
-            }
+</div>
 
-            // Construye la URL con los parámetros
-            const url = `/crear-centro/${encodeURIComponent(nombre)}/${encodeURIComponent(operacion)}/${activo}/`;
-
-            // Redirige al usuario a la vista de creación
-            window.location.href = url;
-            return false; // evita el envío del formulario tradicional
-        }
-    </script>
-
-</body>
-</html>
+{% endblock contenido %}

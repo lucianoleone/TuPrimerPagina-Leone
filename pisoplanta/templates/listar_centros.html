@@ -1,26 +1,93 @@
-<h2>Lista de Centros</h2>
+{% extends "base.html" %}
 
-<ul style="list-style-type: none; padding: 0;">
-    {% for centro in centros %}
-    <li style="
-        background-color: #f8f9fa;
-        border: 1px solid #ddd;
-        border-radius: 6px;
-        margin-bottom: 10px;
-        padding: 10px;
-        box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-    ">
-        <strong>Nombre:</strong> {{ centro.nombre }}<br>
-        <strong>Operación:</strong> {{ centro.operacion }}<br>
-        <strong>Activo:</strong> 
-        {% if centro.activo %}
-            ✅ Sí
-        {% else %}
-            ❌ No
-        {% endif %}
-    </li>
-    {% empty %}
-    <li>No hay centros registrados.</li>
-    {% endfor %}
-</ul>
+{% block titulo %}
+Lista de Centros
+{% endblock titulo %}
 
+{% block contenido %}
+
+<h2 style="margin-bottom: 20px;">Centros de Trabajo</h2>
+
+{% if centros %}
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+
+        {% for centro in centros %}
+        <div style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        ">
+
+            <!-- Imagen -->
+            {% if centro.imagen %}
+                <img src="{{ centro.imagen.url }}" alt="{{ centro.nombre }}"
+                    style="width: 120px; height: 120px; object-fit: cover; border-radius: 8px;">
+            {% else %}
+                <div style="
+                    width: 120px; height: 120px;
+                    background: #e9ecef;
+                    border-radius: 8px;
+                    display: flex; justify-content: center; align-items: center;
+                    color: #888;
+                    font-size: 14px;
+                ">
+                    Sin imagen
+                </div>
+            {% endif %}
+
+            <!-- Información del centro -->
+            <div style="flex-grow: 1;">
+                <h3 style="margin: 0; color: #007bff;">{{ centro.nombre }}</h3>
+
+                <p style="margin: 5px 0 3px 0;">
+                    <strong>Operación:</strong> {{ centro.operacion }}
+                </p>
+
+                <p style="margin: 5px 0;">
+                    <strong>Activo:</strong>
+                    {% if centro.activo %}
+                        <span style="color: green;">✔ Sí</span>
+                    {% else %}
+                        <span style="color: red;">✖ No</span>
+                    {% endif %}
+                </p>
+            </div>
+
+            <!-- Acciones -->
+            <div style="display:flex; flex-direction: column; gap: 8px;">
+
+                <a href="{% url 'ver_centro' centro.id %}"
+                    style="background:#17a2b8; padding:6px 12px; border-radius:6px; text-decoration:none; color:white; text-align:center;">
+                    🔍 Ver
+                </a>
+
+                <a href="{% url 'editar_centro' centro.id %}"
+                    style="background:#ffc107; padding:6px 12px; border-radius:6px; text-decoration:none; color:#000; text-align:center;">
+                    ✏ Editar
+                </a>
+
+                <a href="{% url 'eliminar_centro' centro.id %}"
+                    style="background:#dc3545; padding:6px 12px; border-radius:6px; text-decoration:none; color:white; text-align:center;">
+                    🗑 Eliminar
+                </a>
+
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+{% else %}
+
+    <p style="margin-top: 20px; color: #777;">No hay centros registrados.</p>
+
+{% endif %}
+
+{% endblock contenido %}

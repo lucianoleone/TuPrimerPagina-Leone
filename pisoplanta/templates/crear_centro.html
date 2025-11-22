@@ -1,30 +1,33 @@
-<div style="
-    max-width: 500px;
-    margin: 40px auto;
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    font-family: Arial, sans-serif;
-">
-    <h2 style="color: #2c3e50;">✅ Creación exitosa de centro</h2>
+{% extends "base.html" %}
 
-    <p style="font-size: 1.1em; margin-top: 15px;">
-        <strong>{{ centro.nombre }}</strong> ha sido creado correctamente.
-    </p>
+{% block titulo %}
+Crear Centro de Trabajo
+{% endblock titulo %}
 
-    <p>
-        <strong>Operación:</strong> {{ centro.operacion }}<br>
-        <strong>Estado:</strong>
-        {% if centro.activo %}
-            <span style="color: green; font-weight: bold;">Activo ✅</span>
-        {% else %}
-            <span style="color: red; font-weight: bold;">Inactivo ❌</span>
-        {% endif %}
-    </p>
+{% block contenido %}
 
-    <p style="margin-top: 20px; color: #666;">
-        Puede cerrar esta página o continuar trabajando en la aplicación.
-    </p>
-</div>
+<h2 style="margin-bottom: 20px;">Crear Centro de Trabajo</h2>
+
+<form action="{% url 'crear_centro' %}" method="POST" enctype="multipart/form-data" 
+    style="display: flex; flex-direction: column; gap: 15px;">
+
+    {% csrf_token %}
+
+    {{ formulario.as_p }}
+
+    <button type="submit" style="
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-size: 1em;
+        cursor: pointer;
+        margin-top: 10px;
+    ">
+        Crear Centro
+    </button>
+
+</form>
+
+{% endblock contenido %}

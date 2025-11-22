@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}Base{% endblock titulo %}</title>
+</head>
+
+<body style="font-family: Arial, sans-serif; background-color: #f4f6f8;">
+
+    <nav style="
+        background-color: #333;
+        padding: 12px;
+        color: white;
+    ">
+        <a href="{% url 'home_pisoplanta' %}" style="color:white; text-decoration:none; margin-right:15px;">
+            Inicio
+        </a>
+
+        <a href="{% url 'crear_centro' %}" style="color:white; text-decoration:none; margin-right:15px;">
+            Crear Centro
+        </a>
+
+        <a href="{% url 'listar_centros' %}" style="color:white; text-decoration:none;">
+            Lista de Centros
+        </a>
+    </nav>
+
+    <main class="container" style="max-width: 900px; margin:auto; padding: 20px;">
+        <div class="p-4 bg-white rounded shadow-sm">
+            {% block contenido %}
+            {% endblock contenido %}
+        </div>
+    </main>
+
+</body>
+</html>
