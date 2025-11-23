@@ -1,37 +1,53 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block titulo %}Base{% endblock titulo %}</title>
+
+    <!-- CSS global -->
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
 </head>
 
-<body style="font-family: Arial, sans-serif; background-color: #f4f6f8;">
+<body class="body-app">
 
-    <nav style="
-        background-color: #333;
-        padding: 12px;
-        color: white;
-    ">
-        <a href="{% url 'home_pisoplanta' %}" style="color:white; text-decoration:none; margin-right:15px;">
-            Inicio
-        </a>
+<nav class="navbar-custom">
+    <div class="navbar-container">
 
-        <a href="{% url 'crear_centro' %}" style="color:white; text-decoration:none; margin-right:15px;">
-            Crear Centro
-        </a>
-
-        <a href="{% url 'listar_centros' %}" style="color:white; text-decoration:none;">
-            Lista de Centros
-        </a>
-    </nav>
-
-    <main class="container" style="max-width: 900px; margin:auto; padding: 20px;">
-        <div class="p-4 bg-white rounded shadow-sm">
-            {% block contenido %}
-            {% endblock contenido %}
+        <div class="navbar-brand">
+            <a href="{% url 'home_pisoplanta' %}">Piso de Planta</a>
         </div>
-    </main>
+
+        <ul class="navbar-links">
+
+            <li><a href="{% url 'listar_centros' %}">Centros</a></li>
+            <li><a href="{% url 'crear_centro' %}">Crear Centro</a></li>
+            
+            {% if request.user.is_authenticated %}
+                <li class="navbar-user">Hola, {{ request.user.username }}</li>
+
+                <li>
+                    <form action="{% url 'logout' %}" method="POST">
+                        {% csrf_token %}
+                        <button class="navbar-logout" type="submit">Cerrar sesión</button>
+                    </form>
+                </li>
+            {% else %}
+                <li><a class="navbar-btn" href="{% url 'login' %}">Login</a></li>
+                <li><a class="navbar-btn-register" href="{% url 'register' %}">Registrarse</a></li>
+            {% endif %}
+                <li><a href="{% url 'about' %}">Acerca de</a></li>
+
+        </ul>
+
+    </div>
+</nav>
+
+<main class="container-main">
+    {% block contenido %}
+    {% endblock contenido %}
+</main>
 
 </body>
 </html>

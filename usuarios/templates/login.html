@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block titulo %}Login{% endblock titulo %}
+
+{% block contenido %}
+
+<div class="auth-box card">
+
+    <h2 class="auth-title">Iniciar Sesión</h2>
+
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="{{ formulario.username.id_for_label }}">Usuario</label>
+            {{ formulario.username }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ formulario.password.id_for_label }}">Contraseña</label>
+            {{ formulario.password }}
+        </div>
+
+        <button type="submit" class="btn-auth">Ingresar</button>
+    </form>
+
+    <div class="auth-link">
+        ¿No tenés cuenta?
+        <a href="{% url 'register' %}">Crear una</a>
+    </div>
+
+</div>
+
+{% endblock contenido %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block titulo %}Acerca de mí{% endblock titulo %}
+
+{% block contenido %}
+
+<div class="card" style="max-width: 750px; margin:auto;">
+
+    <h2 class="auth-title" style="margin-bottom: 10px;">Acerca de mí</h2>
+
+    <p class="texto-justificado" >
+        Hola, soy <strong>Luciano</strong>. Tengo 43 años y vivo en <strong>Paraná, Entre Ríos</strong>.
+    </p>
+
+    <p class="texto-justificado" >
+        Soy estudiante de <strong>Ingeniería Electrónica</strong> en la UTN Paraná. 
+        Terminé el cursado allá por el 2009 y, después de varios desvíos de la vida adulta, 
+        retomé el camino académico. Hoy tengo todas las materias aprobadas y me encuentro 
+        preparando mi <strong>Proyecto Final</strong>.
+    </p>
+
+    <p class="texto-justificado" >
+        Este año completé la <strong>Diplomatura en Desarrollo Web Full Stack</strong> de UTN BA, 
+        lo que me abrió la puerta a profundizar en programación, Django, Odoo y desarrollo 
+        web moderno.  
+    </p>
+
+    <p class="texto-justificado" >
+        Trabajo como <strong>Responsable de Tecnologías de la Información</strong> en 
+        <strong>Schneider S.R.L.</strong>, donde combino lo técnico, lo operativo y lo estratégico: 
+        infraestructura, digitalización industrial y proyectos de software que 
+        impactan directamente en la producción y la gestión.
+    </p>
+
+    <p class="texto-justificado" >
+        Me apasiona aprender, mejorar procesos y construir soluciones que realmente sirvan.  
+        Este proyecto forma parte de mi formación, pero también refleja mi forma de trabajar: 
+        con ganas, dedicación y mucha curiosidad.
+    </p>
+
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="{% url 'home_pisoplanta' %}" class="btn btn-primary">
+            ← Volver al inicio
+        </a>
+    </div>
+
+</div>
+
+{% endblock contenido %}

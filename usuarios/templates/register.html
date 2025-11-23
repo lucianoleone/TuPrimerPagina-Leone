@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block titulo %}Registro{% endblock titulo %}
+
+{% block contenido %}
+
+<div class="auth-box card">
+
+    <h2 class="auth-title">Crear Cuenta</h2>
+
+    <form action="{% url 'register' %}" method="POST">
+        {% csrf_token %}
+
+        {% for campo in formulario %}
+            <div class="form-group">
+                <label>{{ campo.label }}</label>
+                {{ campo }}
+                {% if campo.errors %}
+                    <p style="color:red; font-size:14px; margin-top:4px;">
+                        {{ campo.errors.0 }}
+                    </p>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="btn-auth">Registrarse</button>
+    </form>
+
+    <div class="auth-link">
+        ¿Ya tenés cuenta?
+        <a href="{% url 'login' %}">Iniciar sesión</a>
+    </div>
+
+</div>
+
+{% endblock contenido %}

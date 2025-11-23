@@ -6,50 +6,85 @@ Centro: {{ centro.nombre }}
 
 {% block contenido %}
 
-<h2 style="margin-bottom:20px;">Detalles del Centro</h2>
+<h2 style="margin-bottom:20px; color:#17a2b8;">
+    🔍 Detalles del Centro de Trabajo
+</h2>
 
 <div style="
     background: #ffffff;
-    border-radius: 10px;
-    padding: 20px;
+    border-radius: 12px;
+    padding: 25px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     max-width: 600px;
     margin: auto;
 ">
 
+    <!-- Imagen -->
     {% if centro.imagen %}
         <img src="{{ centro.imagen.url }}" alt="{{ centro.nombre }}" 
-             style="width:100%; height: auto; border-radius: 10px; margin-bottom:20px;">
+            style="width:100%; height:auto; border-radius:12px; margin-bottom:20px;">
+    {% else %}
+        <div style="
+            width:100%; height:200px;
+            background:#e9ecef;
+            border-radius:12px;
+            display:flex; justify-content:center; align-items:center;
+            color:#777; margin-bottom:20px; font-size:16px;
+        ">
+            Sin imagen disponible
+        </div>
     {% endif %}
 
-    <p><strong>Nombre:</strong> {{ centro.nombre }}</p>
-    <p><strong>Operación:</strong> {{ centro.operacion }}</p>
+    <!-- Datos -->
+    <p style="font-size:18px; margin-bottom:10px;">
+        <strong>Nombre:</strong><br>
+        <span style="color:#333;">{{ centro.nombre }}</span>
+    </p>
 
-    <p><strong>Activo:</strong> 
+    <p style="font-size:18px; margin-bottom:10px;">
+        <strong>Operación:</strong><br>
+        <span style="
+            background:#007bff;
+            color:white;
+            padding:4px 10px;
+            border-radius:6px;
+            font-size:14px;
+        ">
+            {{ centro.operacion }}
+        </span>
+    </p>
+
+    <p style="font-size:18px;">
+        <strong>Activo:</strong><br>
         {% if centro.activo %}
-            <span style="color:green;">✔ Sí</span>
+            <span style="color:green; font-weight:bold;">✔ Activo</span>
         {% else %}
-            <span style="color:red;">✖ No</span>
+            <span style="color:red; font-weight:bold;">✖ Inactivo</span>
         {% endif %}
     </p>
 
-    <div style="margin-top: 20px; display:flex; gap: 10px;">
+    <!-- Acciones -->
+    <div style="margin-top: 25px; display:flex; gap: 10px;">
+
         <a href="{% url 'editar_centro' centro.id %}"
-            style="background:#ffc107; padding:8px 14px; border-radius:6px; text-decoration:none; color:#000;">
+            style="flex:1; background:#ffc107; padding:10px 14px; border-radius:6px;
+            text-decoration:none; color:#000; text-align:center; font-weight:bold;">
             ✏ Editar
         </a>
 
         <a href="{% url 'eliminar_centro' centro.id %}"
-            style="background:#dc3545; padding:8px 14px; border-radius:6px; text-decoration:none; color:white;">
+            style="flex:1; background:#dc3545; padding:10px 14px; border-radius:6px;
+            text-decoration:none; color:white; text-align:center; font-weight:bold;">
             🗑 Eliminar
         </a>
 
         <a href="{% url 'listar_centros' %}"
-            style="background:#007bff; padding:8px 14px; border-radius:6px; text-decoration:none; color:white;">
-            ← Volver
+            style="flex:1; background:#007bff; padding:10px 14px; border-radius:6px;
+                text-decoration:none; color:white; text-align:center; font-weight:bold;">
+                ← Volver
         </a>
-    </div>
 
+    </div>
 </div>
 
 {% endblock contenido %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block titulo %}Sesión cerrada{% endblock titulo %}
+
+{% block contenido %}
+
+<div class="auth-box card">
+
+    <h2 class="auth-title">Sesión cerrada</h2>
+
+    <p style="text-align:center; margin-bottom:20px;">
+        Cerraste sesión correctamente.
+    </p>
+
+    <a href="{% url 'login' %}" class="btn-auth" style="display:block; text-align:center;">
+        Iniciar Sesión
+    </a>
+
+</div>
+
+{% endblock contenido %}
