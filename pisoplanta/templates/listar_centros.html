@@ -7,7 +7,12 @@ Lista de Centros
 {% block contenido %}
 
 <h2 style="margin-bottom: 20px;">Centros de Trabajo</h2>
-
+<form method="GET" class="search-box">
+    <div class="search-group">
+        {{ formulario.nombre }}
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+</form>
 {% if centros %}
     <div style="display: flex; flex-direction: column; gap: 20px;">
 

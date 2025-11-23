@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from pisoplanta.models import Centro #importamos el modelo
-from pisoplanta.form import CrearCentro #importamos el formulario creado
+from pisoplanta.form import CrearCentro, BuscarCentro #importamos el formulario creado
 from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -31,8 +31,17 @@ def crear_centro(request):
     
 #vista para listar los centros de trabajo almacenados en la base de datos
 def listar_centros(request):
+    formulario = BuscarCentro(request.GET)
+
     centros = Centro.objects.all()
-    return render(request, 'listar_centros.html', {'centros': centros})
+    if formulario.is_valid():
+        busqueda = formulario.cleaned_data.get('nombre', 'operacion')
+        if busqueda:
+            centros = centros.filter(
+                nombre__icontains=busqueda
+            ) | centros.filter(operacion__icontains=busqueda)
+        
+    return render(request, 'listar_centros.html', {'centros': centros, 'formulario': formulario})
 
 class EditarCentro(LoginRequiredMixin, UpdateView):
     model = Centro

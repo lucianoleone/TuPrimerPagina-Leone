@@ -300,3 +300,23 @@ form input:focus {
     text-align: justify;
 }
 
+.search-box {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: left;
+}
+
+.search-group {
+    display: flex;
+    gap: 10px;
+}
+
+.no-results {
+    color: #777;
+    margin-top: 25px;
+    text-align: center;
+    font-style: italic;
+}
+
+
