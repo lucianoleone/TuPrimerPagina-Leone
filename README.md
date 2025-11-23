@@ -1,20 +1,28 @@
-🏭 Sistema de Relevamiento de Centros Industriales — Django
+# 🏭 Sistema de Relevamiento de Centros Industriales — Django
 
-Este proyecto es una aplicación web desarrollada con Django para registrar, visualizar y gestionar centros industriales (máquinas o equipos de trabajo).
+Este proyecto es una aplicación web desarrollada con **Django** para registrar, visualizar y gestionar centros industriales (máquinas o equipos de trabajo).  
 El objetivo es mantener un relevamiento actualizado del estado operativo y la existencia de cada centro, con la posibilidad de asociarlos en el futuro a productos o condiciones de funcionamiento más detalladas.
 
-🚀 Funcionalidades principales
+---
 
-Creación de centros de trabajo mediante parámetros en la URL
+## 🚀 Funcionalidades principales
 
-Listado general de centros de trabajo  existentes con sus estados
+- ✔ **CRUD completo** de Centros de Trabajo  
+- ✔ **Login, Logout y Registro** de usuarios  
+- ✔ **Protección de vistas** mediante Mixins y Decoradores  
+- ✔ **Búsqueda avanzada** de centros por nombre u operación  
+- ✔ **Interfaz moderna y responsiva**, con estilos propios  
+- ✔ **Uso de Class-Based Views (CBV)** en edición y eliminación  
+- ✔ **Página de inicio** y **página About**  
+- ✔ **Carga y visualización de imágenes**  
+- ✔ **Administración completa desde Django Admin**  
 
-Interfaz visual simple y clara (sin dependencias externas)
+---
 
-Base preparada para futuras expansiones, como asociación con productos o informes de funcionamiento
+## 📂 Estructura del proyecto
 
-🧩 Estructura del proyecto
-TuPrimerPagina-Leone-main/
+```
+TuPrimerPagina-Leone/
 ├── manage.py
 ├── requirements.txt
 ├── .gitignore
@@ -22,49 +30,97 @@ TuPrimerPagina-Leone-main/
 │   ├── settings.py
 │   ├── urls.py
 │   └── ...
+├── usuarios/
+│   ├── templates/
+│   │   ├── login.html
+│   │   ├── logout.html
+│   │   └── register.html
+│   ├── views.py
+│   ├── urls.py
+│   └── forms.py
 └── pisoplanta/
     ├── models.py
     ├── views.py
     ├── urls.py
     ├── templates/
     │   ├── crear_centro.html
-    │   ├── homepisoplanta.html
-    │   └── listar_centros.html
+    │   ├── editar_centro.html
+    │   ├── eliminar_centro.html
+    │   ├── listar_centros.html
+    │   ├── ver_centro.html
+    │   └── homepisoplanta.html
     └── ...
+```
 
+---
 
+## 🌐 URLs principales
 
-Abrí en el navegador: 👉 http://127.0.0.1:8000
-
-🌐 URLs del proyecto
-1️⃣ Página principal
+### 1️⃣ Página principal  
 http://127.0.0.1:8000/
 
+### 2️⃣ Listado de Centros  
+http://127.0.0.1:8000/centros/
 
-Muestra el inicio de la aplicación (homepisoplanta.html), con acceso a las funciones disponibles.
+### 3️⃣ Crear Centro  
+http://127.0.0.1:8000/crear-centro/
 
-2️⃣ Listado de centros
-http://127.0.0.1:8000/listar-centros/
+### 4️⃣ Login  
+http://127.0.0.1:8000/usuarios/login/
 
+### 5️⃣ Registro  
+http://127.0.0.1:8000/usuarios/register/
 
+### 6️⃣ About  
+http://127.0.0.1:8000/about/
 
-3️⃣ Creación de un centro (vía URL)
-http://127.0.0.1:8000/crear-centro/<nombre>/<operacion>/<activo>/
+---
 
+## 🔐 Seguridad
 
+- Rutas sensibles protegidas con **LoginRequiredMixin**  
+- Uso de **decoradores** para restringir acciones de creación, edición y borrado  
+- Control visual en el menú según estado del usuario  
 
-👤 Autor
+---
 
-Luciano Leone
+## 📦 Requisitos del proyecto
 
-📧 Contacto: [luciano.leone@gmail.com]
+El archivo `requirements.txt` incluye todas las dependencias necesarias para ejecutar el proyecto.
 
-💬 Notas
+Para instalarlas:
 
-Este sistema servirá como base para un relevamiento de maquinaria industrial, permitiendo:
+```
+pip install -r requirements.txt
+```
 
-Cargar y clasificar centros (máquinas)
+---
 
-Registrar su estado operativo
+## ▶ Cómo ejecutar el proyecto
 
-Asociarlos en el futuro con productos, mantenimiento y condiciones de uso
+1. Crear entorno virtual  
+2. Instalar dependencias  
+3. Aplicar migraciones  
+4. Ejecutar servidor:
+
+```
+python manage.py runserver
+```
+
+---
+
+## 📌 Notas importantes para la entrega
+
+- ❗ *No subir `db.sqlite3` al repositorio*  
+- ❗ *No subir contenido de `/media`*  
+- ✔ Se utiliza herencia de templates  
+- ✔ Uso de CBV, Mixins y decoradores  
+- ✔ Sistema completo de autenticación de usuarios  
+- ✔ CRUD completo funcionando  
+- ✔ Video demostrativo solicitado por la cátedra  
+
+---
+
+## 👨‍💻 Autor
+
+Proyecto desarrollado por **Luciano Leone**, estudiante de Ingeniería Electrónica y responsable de TI en Schneider SRL, Paraná, Entre Ríos.

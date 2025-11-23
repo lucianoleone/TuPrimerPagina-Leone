@@ -7,12 +7,27 @@ Lista de Centros
 {% block contenido %}
 
 <h2 style="margin-bottom: 20px;">Centros de Trabajo</h2>
-<form method="GET" class="search-box">
+<form method="GET" action="{% url 'listar_centros' %}" class="search-container">
+
+    <input 
+        type="text" 
+        name="busqueda" 
+        class="search-input"
+        placeholder="Buscar por nombre u operación..."
+        value="{{ request.GET.busqueda }}">
+    
+    <button type="submit" class="btn btn-primary">
+        🔍 Buscar
+    </button>
+
+</form>
+
+{% comment %} <form method="GET" class="search-box">
     <div class="search-group">
         {{ formulario.nombre }}
         <button type="submit" class="btn btn-primary">Buscar</button>
     </div>
-</form>
+</form> {% endcomment %}
 {% if centros %}
     <div style="display: flex; flex-direction: column; gap: 20px;">
 

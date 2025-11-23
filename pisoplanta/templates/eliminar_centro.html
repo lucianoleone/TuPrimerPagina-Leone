@@ -6,68 +6,43 @@ Eliminar Centro
 
 {% block contenido %}
 
-<h2 style="margin-bottom: 20px; color:#dc3545;">
-    🗑 Eliminar Centro de Trabajo
-</h2>
+<div class="card" style="max-width: 550px; margin: auto;">
 
-<div style="
-    background:white;
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.1);
-    max-width:500px;
-    margin:auto;
-">
+    <h2 class="auth-title" style="color:#dc3545;">
+        🗑 Eliminar Centro de Trabajo
+    </h2>
 
-    <p style="font-size:16px; margin-bottom:25px;">
-        Estás por eliminar el centro:
+    <p class="justify-text" style="margin-bottom:25px;">
+        Estás por eliminar el siguiente centro:
         <br><br>
-        <strong style="font-size:18px; color:#333;">{{ centro.nombre }}</strong>
+
+        <strong style="font-size:20px; color:#222;">
+            {{ centro.nombre }}
+        </strong>
         <br>
-        <span style="color:#666;">
-            (Operación: {{ centro.operacion }})
-        </span>
-        <br><br>
 
+        <span style="color:#666;">
+            Operación: <strong>{{ centro.operacion }}</strong>
+        </span>
+
+        <br><br>
         <span style="color:#dc3545; font-weight:bold;">
-            Esta acción es permanente y no se puede deshacer.
+            ⚠ Esta acción es permanente y no se puede deshacer.
         </span>
     </p>
 
-    <form method="POST" style="display:flex; gap:15px;">
+    <form method="POST" style="display:flex; gap:15px; margin-top:20px;">
         {% csrf_token %}
 
         <!-- Botón Eliminar -->
-        <button type="submit" style="
-            flex:1;
-            background:#dc3545;
-            color:white;
-            padding:10px 15px;
-            border:none;
-            border-radius:6px;
-            font-size:16px;
-            cursor:pointer;
-            font-weight:bold;
-            text-align:center;
-        ">
+        <button type="submit" class="btn btn-danger" style="flex:1;">
             🗑 Eliminar definitivamente
         </button>
 
         <!-- Botón Cancelar -->
-        <a href="{% url 'listar_centros' %}" style="
-            flex:1;
-            background:#6c757d;
-            color:white;
-            padding:10px 15px;
-            border-radius:6px;
-            text-decoration:none;
-            font-size:16px;
-            text-align:center;
-            font-weight:bold;
-        ">
+        <a href="{% url 'listar_centros' %}" class="btn btn-secondary" style="flex:1; text-align:center;">
             ✖ Cancelar
         </a>
-
     </form>
 
 </div>

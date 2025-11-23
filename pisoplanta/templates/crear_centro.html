@@ -6,28 +6,45 @@ Crear Centro de Trabajo
 
 {% block contenido %}
 
-<h2 style="margin-bottom: 20px;">Crear Centro de Trabajo</h2>
+<div class="card form-container">
 
-<form action="{% url 'crear_centro' %}" method="POST" enctype="multipart/form-data" 
-    style="display: flex; flex-direction: column; gap: 15px;">
+    <h2 class="auth-title">Crear Centro de Trabajo</h2>
 
-    {% csrf_token %}
+    <form action="{% url 'crear_centro' %}" method="POST" enctype="multipart/form-data">
 
-    {{ formulario.as_p }}
+        {% csrf_token %}
 
-    <button type="submit" style="
-        background-color: #28a745;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 6px;
-        font-size: 1em;
-        cursor: pointer;
-        margin-top: 10px;
-    ">
-        Crear Centro
-    </button>
+        <!-- Campos del formulario -->
+        <div class="form-group">
+            <label for="{{ formulario.nombre.id_for_label }}">Nombre</label>
+            {{ formulario.nombre }}
+        </div>
 
-</form>
+        <div class="form-group">
+            <label for="{{ formulario.operacion.id_for_label }}">Operación</label>
+            {{ formulario.operacion }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ formulario.imagen.id_for_label }}">Imagen</label>
+            {{ formulario.imagen }}
+        </div>
+
+        <div style="display:flex; alig-items:center; gap:10px; margin-top:10px;">
+            <label style="margin:0; font-weight:600;">Activo</label>
+            <div>
+                {{ formulario.activo }}
+            </div>
+            
+        </div>
+
+        <!-- Botón enviar -->
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 15px;">
+            Crear Centro
+        </button>
+
+    </form>
+
+</div>
 
 {% endblock contenido %}
