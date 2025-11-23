@@ -6,7 +6,7 @@ class CrearCentro(forms.Form):
     imagen=forms.ImageField(required=False)
 
 class BuscarCentro(forms.Form):
-    nombre = forms.CharField(
+    busqueda = forms.CharField(
         max_length=100, 
         required=False,
         label='Buscar centro',

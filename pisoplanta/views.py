@@ -32,16 +32,31 @@ def crear_centro(request):
 #vista para listar los centros de trabajo almacenados en la base de datos
 def listar_centros(request):
     formulario = BuscarCentro(request.GET)
-
+    mensaje = ""
     centros = Centro.objects.all()
     if formulario.is_valid():
-        busqueda = formulario.cleaned_data.get('nombre', 'operacion')
+        busqueda = formulario.cleaned_data.get('busqueda')
         if busqueda:
             centros = centros.filter(
                 nombre__icontains=busqueda
             ) | centros.filter(operacion__icontains=busqueda)
         
-    return render(request, 'listar_centros.html', {'centros': centros, 'formulario': formulario})
+    if not centros.exists():
+                mensaje = f"No se encontraron centros que coincidan con: '{busqueda}'"
+
+    # Si no hay búsqueda pero tampoco hay centros creados
+    if not centros.exists() and mensaje == "":
+        mensaje = "Todavía no hay centros registrados."
+
+    return render(
+        request,
+        'listar_centros.html',
+        {
+            'centros': centros,
+            'formulario': formulario,
+            'mensaje': mensaje
+        }
+    )
 
 class EditarCentro(LoginRequiredMixin, UpdateView):
     model = Centro
